@@ -25,7 +25,7 @@ function buildSteps() {
     {
       target: `[data-tour="meeting-card-${DEMO_MEETING_1_ID}"]`,
       title: 'Click to open the Alignment Report',
-      body: 'Clicking this card opens the full pre-meeting intelligence report — stance distributions, key objectors, prep briefs, and suggested time allocation per decision.',
+      body: 'Clicking this card opens the full pre-meeting intelligence report — stance distributions, key objectors, prep briefs, and suggested time allocation per decision. The report is not a summary of what happened — it is strategic preparation for what is about to happen. Feld calls this the difference between a working board and a reporting board.',
       navigateTo: ['alignment-report', DEMO_MEETING_1_ID],
     },
     {
@@ -36,8 +36,7 @@ function buildSteps() {
     {
       target: '[data-tour="decision-card-report-0"]',
       title: 'Decision-level alignment',
-      body: 'The stacked bar shows the distribution of stances across your board. Here: 2 Support, 1 Neutral, 1 Concerned. The tool identifies Marcus Webb as the member requiring attention — and surfaces his exact reasoning and the specific condition that would shift him to Support.',
-      note: 'BoardAlign is a preparation tool, not a prediction engine. The value is not whether these simulations prove correct — it is whether modeling them forces you to think through every objection before it lands in public.',
+      body: 'The stacked bar shows the distribution of stances across your board. Here: 2 Support, 1 Neutral, 1 Concerned. The tool identifies Marcus Webb as the member requiring attention — and surfaces his exact reasoning and the specific condition that would shift him to Support.\n\nGroupthink means the first person to speak sets the frame and everyone else adjusts. If you have not modeled the objection before the meeting, you will hear it for the first time in public — under time pressure, in front of the people whose confidence you need. This step forces you to think through every objection before it lands.',
     },
     {
       target: '[data-tour="decision-card-2-objectors"]',
@@ -48,7 +47,7 @@ function buildSteps() {
     {
       target: '[data-tour="prep-brief-section"]',
       title: 'Your meeting strategy, auto-generated',
-      body: "Feld and Ramsinghani frame your board as a high-level protective resource — but only when you have done the preparation to deploy it. This section tells you how to allocate the meeting's time. The European expansion gets 20 minutes. The CTO promotion gets 10 — full alignment. The bridge financing gets 35 minutes of structured discussion, not managed consensus.",
+      body: "Feld and Ramsinghani describe the board's most underused function as providing high-level air cover for the CEO — absorbing external pressure, signaling credibility to investors, and backing the CEO publicly in moments of challenge. But air cover only works if the board is genuinely aligned before it is needed. A board that surprises you in the meeting cannot protect you outside of it. This section tells you where your alignment is real and where it is assumed — so you know which decisions you can rely on your board to back, and which ones you need to earn first.",
     },
     {
       target: '[data-tour="philosophy-note"]',
@@ -126,9 +125,15 @@ function WelcomeModal({ onStart, onSkip }) {
           one objects, you prepare for every objection in advance.
         </p>
         <p className="tour-welcome-body" style={{ marginTop: 12 }}>
-          The tool draws on the mentor/monitor distinction from <em>Startup Boards</em>: mentor-class
-          members develop founders through disagreement; monitor-class members audit performance.
-          The same objection means something different depending on which type is raising it.
+          The tool draws on a core distinction in <em>Startup Boards</em>: mentor-class boards engage
+          with the CEO's real uncertainty before decisions are made; monitor-class boards wait to be
+          informed and then vote. Most board meetings are structured to produce the second kind of board,
+          even when everyone in the room intends the first. BoardAlign is built to close that gap.
+        </p>
+        <p className="tour-welcome-body" style={{ marginTop: 12 }}>
+          As a future founder, I intend to run this process before every board meeting — not because
+          I expect my simulations to be correct, but because the act of modeling each board member's
+          reasoning is itself the preparation.
         </p>
         <div className="tour-welcome-separator" />
         <p className="tour-welcome-note">
