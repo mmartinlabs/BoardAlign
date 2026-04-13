@@ -106,9 +106,8 @@ export default function Dashboard({ navigate }) {
 
         <div className="dashboard-footer">
           <p className="dashboard-attribution">
-            Built as an academic project inspired by{' '}
-            <em>Startup Boards</em> by Brad Feld &amp; Mahendra Ramsinghani (2nd&nbsp;ed., 2022).
-            Board dynamics concepts drawn from Chapters 11 and 13. Not a commercial product.
+            After reading <em>Startup Boards</em> by Brad Feld &amp; Mahendra Ramsinghani,
+            we built this tool around the board dynamics described in Chapters 11 and 13.
           </p>
           <button className="restart-tour-btn" onClick={restartTour}>
             Restart the guided tour
