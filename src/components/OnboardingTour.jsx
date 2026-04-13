@@ -249,6 +249,10 @@ export default function OnboardingTour({ navigate }) {
     if (phase !== 'touring') return
 
     clearTimeout(timerRef.current)
+
+    // Hide tooltip immediately so the old step doesn't linger during transition
+    setTooltipPos({ top: -9999, left: -9999, arrowDir: 'top', arrowLeft: 160 })
+
     let attempts = 0
 
     function tryFind() {
@@ -285,16 +289,23 @@ export default function OnboardingTour({ navigate }) {
         highlightedRef.current = el
       }
 
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      // Only scroll if the element is not already fully visible
+      const rectNow = el.getBoundingClientRect()
+      const alreadyVisible = rectNow.top >= 0 && rectNow.bottom <= window.innerHeight
+      if (!alreadyVisible) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
 
-      // Wait for scroll to settle
+      // If no scrolling needed, update position immediately (next tick); otherwise wait for scroll
+      const delay = alreadyVisible ? 0 : 180
+
       timerRef.current = setTimeout(() => {
         if (!mountedRef.current) return
         const rect = el.getBoundingClientRect()
         const plain = { top: rect.top, left: rect.left, right: rect.right, bottom: rect.bottom, width: rect.width, height: rect.height }
         setTargetRect(plain)
         setTooltipPos(calcTooltipPos(plain))
-      }, 380)
+      }, delay)
     }
 
     tryFind()

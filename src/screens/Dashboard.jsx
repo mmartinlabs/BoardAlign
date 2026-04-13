@@ -10,11 +10,12 @@ import Button from '../components/Button'
 const TOUR_KEY = 'boardalign_tour_seen'
 
 export default function Dashboard({ navigate }) {
-  const [meetings, setMeetings] = useState([])
+  const [meetings, setMeetings] = useState(() =>
+    getMeetings().filter(m => m.status !== 'complete')
+  )
 
   useEffect(() => {
-    const all = getMeetings()
-    setMeetings(all.filter(m => m.status !== 'complete'))
+    setMeetings(getMeetings().filter(m => m.status !== 'complete'))
   }, [])
 
   const completedMeetings = getMeetings().filter(m => m.status === 'complete')

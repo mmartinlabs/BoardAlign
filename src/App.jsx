@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Dashboard from './screens/Dashboard'
 import MeetingSetup from './screens/MeetingSetup'
 import DefineDecisions from './screens/DefineDecisions'
@@ -6,16 +6,11 @@ import SimulateResponses from './screens/SimulateResponses'
 import AlignmentReport from './screens/AlignmentReport'
 import Archive from './screens/Archive'
 import OnboardingTour from './components/OnboardingTour'
-import { seedDemoData } from './utils/seedData'
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState('dashboard')
   const [activeMeetingId, setActiveMeetingId] = useState(null)
   const [activeTab, setActiveTab] = useState(null)
-
-  useEffect(() => {
-    seedDemoData()
-  }, [])
 
   function navigate(screen, meetingId = undefined) {
     setCurrentScreen(screen)
