@@ -3,6 +3,7 @@ import { getMeetings } from '../utils/localStorage'
 import { getMeetingStatus } from '../utils/scoringLogic'
 import { formatDate } from '../utils/helpers'
 import RiskBadge from '../components/RiskBadge'
+import TopBar from '../components/TopBar'
 import EmptyState from '../components/EmptyState'
 import Button from '../components/Button'
 
@@ -33,10 +34,13 @@ export default function Dashboard({ navigate }) {
 
   return (
     <div className="screen">
-      <header className="topbar">
-        <span className="app-name">BoardAlign</span>
-        <span className="app-subtitle">Pre-Meeting Alignment Checker</span>
-      </header>
+      <TopBar
+        rightAction={
+          <Button onClick={() => navigate('meeting-setup', null)}>
+            + New Meeting
+          </Button>
+        }
+      />
       <main className="main-content" style={{ maxWidth: 720 }}>
         <h1 className="page-title">Your Board Meetings</h1>
         <p className="page-subtitle">
@@ -100,6 +104,11 @@ export default function Dashboard({ navigate }) {
         )}
 
         <div className="dashboard-footer">
+          <p className="dashboard-attribution">
+            Built as an academic project inspired by{' '}
+            <em>Startup Boards</em> by Brad Feld &amp; Mahendra Ramsinghani (2nd&nbsp;ed., 2022).
+            Board dynamics concepts drawn from Chapters 11 and 13. Not a commercial product.
+          </p>
           <button className="restart-tour-btn" onClick={restartTour}>
             Restart the guided tour
           </button>

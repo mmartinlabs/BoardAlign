@@ -3,6 +3,7 @@ import { getMeetings } from '../utils/localStorage'
 import { getMeetingStatus } from '../utils/scoringLogic'
 import { formatDate } from '../utils/helpers'
 import RiskBadge from '../components/RiskBadge'
+import TopBar from '../components/TopBar'
 import EmptyState from '../components/EmptyState'
 import Button from '../components/Button'
 
@@ -16,10 +17,7 @@ export default function Archive({ navigate }) {
 
   return (
     <div className="screen">
-      <header className="topbar">
-        <span className="app-name">BoardAlign</span>
-        <span className="app-subtitle">Pre-Meeting Alignment Checker</span>
-      </header>
+      <TopBar />
       <main className="main-content" style={{ maxWidth: 720 }}>
         <button className="back-nav" onClick={() => navigate('dashboard')}>
           ← Back

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { DEMO_MEETING_1_ID } from '../utils/seedData'
 
 const TOUR_KEY = 'boardalign_tour_seen'
-const TOOLTIP_W = 360
+const TOOLTIP_W = 320
 const GAP = 14
 const MARGIN = 16
 const SPOTLIGHT_PAD = 8
@@ -15,7 +15,7 @@ function buildSteps() {
       target: `[data-tour="meeting-card-${DEMO_MEETING_1_ID}"]`,
       title: 'Your upcoming meetings',
       body: "This is your pre-meeting workspace. Each card represents a board meeting where you have modeled your board's likely positions. The colored badge on the right shows overall alignment risk — this one is flagged as 'At Risk' because one director opposes a key item.",
-      note: 'The demo data here reflects a real pre-Series B scenario with four directors across three decisions.',
+      note: 'The demo data reflects a real pre-Series B scenario with four directors across three decisions.',
     },
     {
       target: `[data-tour="risk-badge-${DEMO_MEETING_1_ID}"]`,
@@ -37,7 +37,7 @@ function buildSteps() {
       target: '[data-tour="decision-card-report-0"]',
       title: 'Decision-level alignment',
       body: 'The stacked bar shows the distribution of stances across your board. Here: 2 Support, 1 Neutral, 1 Concerned. The tool identifies Marcus Webb as the member requiring attention — and surfaces his exact reasoning and the specific condition that would shift him to Support.',
-      note: 'This is the difference between being surprised by an objection in the room and having already prepared your response to it.',
+      note: 'BoardAlign is a preparation tool, not a prediction engine. The value is not whether these simulations prove correct — it is whether modeling them forces you to think through every objection before it lands in public.',
     },
     {
       target: '[data-tour="decision-card-2-objectors"]',
@@ -48,12 +48,12 @@ function buildSteps() {
     {
       target: '[data-tour="prep-brief-section"]',
       title: 'Your meeting strategy, auto-generated',
-      body: "This tells you how to allocate the meeting's time before you arrive. The European expansion gets 20 minutes — one concerned voice to address. The CTO promotion gets 10 minutes — full alignment, minimal deliberation needed. The bridge financing gets 35 minutes — genuine opposition that requires structured discussion.",
+      body: "Feld and Ramsinghani frame your board as a high-level protective resource — but only when you have done the preparation to deploy it. This section tells you how to allocate the meeting's time. The European expansion gets 20 minutes. The CTO promotion gets 10 — full alignment. The bridge financing gets 35 minutes of structured discussion, not managed consensus.",
     },
     {
       target: '[data-tour="philosophy-note"]',
       title: 'The gap is your real board intelligence',
-      body: "If a director who appeared Opposed here votes yes in the meeting without raising the objection, ask yourself why. That silence — caused by social pressure, sequential speaking order, or reciprocity between co-investors — is exactly the problem this tool exists to surface before it becomes invisible.",
+      body: "If a director who appeared Opposed here votes yes in the meeting without raising the objection, ask yourself why. That silence — caused by groupthink, sequential speaking order, or reciprocity between co-investors — is exactly the problem this tool exists to surface before it becomes invisible.",
       isFinal: true,
     },
   ]
@@ -119,9 +119,16 @@ function WelcomeModal({ onStart, onSkip }) {
         </h2>
         <p className="tour-welcome-body">
           Most founders discover where their board stands during the meeting — when social pressure,
-          speaking order, and reciprocity dynamics are already shaping every response. BoardAlign helps
-          you map alignment in advance, so the meeting becomes a space for genuine deliberation rather
-          than managed consensus.
+          sequential speaking order, and reciprocity between co-investors are already shaping every
+          response. Seth Levine documents a related anti-pattern: founders who spend more time lobbying
+          individual board members before the meeting than they spend running the company. BoardAlign
+          inverts this. Instead of lobbying for consensus, you model resistance. Instead of hoping no
+          one objects, you prepare for every objection in advance.
+        </p>
+        <p className="tour-welcome-body" style={{ marginTop: 12 }}>
+          The tool draws on the mentor/monitor distinction from <em>Startup Boards</em>: mentor-class
+          members develop founders through disagreement; monitor-class members audit performance.
+          The same objection means something different depending on which type is raising it.
         </p>
         <div className="tour-welcome-separator" />
         <p className="tour-welcome-note">
@@ -219,7 +226,7 @@ export default function OnboardingTour({ navigate }) {
   )
   const [stepIndex, setStepIndex] = useState(0)
   const [targetRect, setTargetRect] = useState(null)
-  const [tooltipPos, setTooltipPos] = useState({ top: -9999, left: -9999, arrowDir: 'top', arrowLeft: 180 })
+  const [tooltipPos, setTooltipPos] = useState({ top: -9999, left: -9999, arrowDir: 'top', arrowLeft: 160 })
 
   const highlightedRef = useRef(null)
   const timerRef = useRef(null)
@@ -254,6 +261,17 @@ export default function OnboardingTour({ navigate }) {
       if (!el) {
         if (++attempts < 30) {
           timerRef.current = setTimeout(tryFind, 100)
+        } else {
+          // Element not found after 30 attempts — show tooltip centered without spotlight
+          setTargetRect(null)
+          const vw = window.innerWidth
+          const vh = window.innerHeight
+          setTooltipPos({
+            top: vh / 2 - 140,
+            left: Math.max(MARGIN, vw / 2 - TOOLTIP_W / 2),
+            arrowDir: 'top',
+            arrowLeft: TOOLTIP_W / 2,
+          })
         }
         return
       }

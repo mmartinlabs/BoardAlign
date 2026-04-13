@@ -3,6 +3,7 @@ import { getMeetingById, saveMeeting } from '../utils/localStorage'
 import { newId } from '../utils/helpers'
 import Input from '../components/Input'
 import TextArea from '../components/TextArea'
+import TopBar from '../components/TopBar'
 import Button from '../components/Button'
 
 const MAX_DECISIONS = 5
@@ -83,10 +84,7 @@ export default function DefineDecisions({ navigate, activeMeetingId }) {
 
   return (
     <div className="screen">
-      <header className="topbar">
-        <span className="app-name">BoardAlign</span>
-        <span className="app-subtitle">Pre-Meeting Alignment Checker</span>
-      </header>
+      <TopBar />
       <main className="main-content" style={{ maxWidth: 680 }}>
         <button className="back-nav" onClick={() => navigate('meeting-setup')}>
           ← Back
@@ -99,8 +97,9 @@ export default function DefineDecisions({ navigate, activeMeetingId }) {
 
         <div className="callout-box">
           "Committing to your own position before simulating your board's responses is not optional.
-          It prevents you from unconsciously reverse-engineering your stance from what you expect
-          your board to want — the exact pattern Seth Levine identifies as 'managing the board.'"
+          It prevents you from unconsciously reverse-engineering your stance from what you expect your board to want —
+          the exact pattern that Chapter 11 of <em>Startup Boards</em> identifies as 'managing the board':
+          using meetings to ratify decisions already made, rather than to make them."
         </div>
 
         <div>

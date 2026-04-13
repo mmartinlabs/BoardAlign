@@ -10,13 +10,14 @@ import {
 import { formatDate } from '../utils/helpers'
 import RiskBadge from '../components/RiskBadge'
 import DecisionCard from '../components/DecisionCard'
+import TopBar from '../components/TopBar'
 import Button from '../components/Button'
 
 const STANCE_COLORS = {
-  support:   'var(--color-green)',
-  neutral:   '#d1d0c8',
-  concerned: 'var(--color-amber)',
-  oppose:    'var(--color-red)',
+  support:   '#16a34a',
+  neutral:   '#d4d2cb',
+  concerned: '#d97706',
+  oppose:    '#dc2626',
 }
 
 function getPrepNote(decision, boardMembers) {
@@ -94,10 +95,7 @@ export default function AlignmentReport({ navigate, activeMeetingId }) {
 
   return (
     <div className="screen">
-      <header className="topbar">
-        <span className="app-name">BoardAlign</span>
-        <span className="app-subtitle">Pre-Meeting Alignment Checker</span>
-      </header>
+      <TopBar />
       <main className="main-content" style={{ maxWidth: 760 }}>
         <button className="back-nav" onClick={() => navigate('dashboard')}>
           ← Back to Your Meetings
@@ -169,6 +167,8 @@ export default function AlignmentReport({ navigate, activeMeetingId }) {
             <h2 className="section-title">Meeting Prep Brief</h2>
             <p className="section-subtitle">
               Suggested time allocation and preparation priorities based on alignment risk.
+              Your board exists to give you high-level air cover — but only if you walk in
+              knowing where the resistance is.
             </p>
             <div className="prep-list">
               {meeting.decisions.map(decision => {
@@ -201,6 +201,12 @@ export default function AlignmentReport({ navigate, activeMeetingId }) {
             <h2 className="section-title">Board Member Risk Profile</h2>
             <p className="section-subtitle">
               Which members show the most resistance across all decisions.
+            </p>
+            <p className="section-helper">
+              A board member who opposes multiple decisions is not necessarily wrong.
+              But you need to know before the meeting whether their resistance reflects a
+              principled view or a structural misalignment — so you can address it rather
+              than be ambushed by it.
             </p>
             <div className="member-profile-list">
               {meeting.boardMembers.map(member => {
@@ -253,9 +259,10 @@ export default function AlignmentReport({ navigate, activeMeetingId }) {
         {/* Section 4: Philosophy Note */}
         <div className="philosophy-note" data-tour="philosophy-note">
           "These responses simulate what your board members would say privately — before social pressure,
-          sequential speaking order, and reciprocity dynamics shape what they say in the room. The gap between
-          these private views and the meeting outcome is your real board intelligence. If a member who appeared
-          Opposed here votes yes in the meeting without argument, ask yourself why."
+          groupthink, sequential speaking order, and reciprocity between co-investors shape what they say
+          in the room. The gap between these private views and the meeting outcome is your real board
+          intelligence. If a member who appeared Opposed here votes yes in the meeting without argument,
+          ask yourself why."
         </div>
       </main>
     </div>

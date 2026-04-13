@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { getMeetingById, saveMeeting } from '../utils/localStorage'
-import { newId, formatDate } from '../utils/helpers'
+import { newId } from '../utils/helpers'
 import BoardMemberRow from '../components/BoardMemberRow'
+import TopBar from '../components/TopBar'
 import Button from '../components/Button'
 import Input from '../components/Input'
 
@@ -76,10 +77,7 @@ export default function MeetingSetup({ navigate, activeMeetingId }) {
 
   return (
     <div className="screen">
-      <header className="topbar">
-        <span className="app-name">BoardAlign</span>
-        <span className="app-subtitle">Pre-Meeting Alignment Checker</span>
-      </header>
+      <TopBar />
       <main className="main-content" style={{ maxWidth: 600 }}>
         <button className="back-nav" onClick={() => navigate('dashboard')}>
           ← Back

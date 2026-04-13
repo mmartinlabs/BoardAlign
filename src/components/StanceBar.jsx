@@ -1,10 +1,10 @@
 import React from 'react'
 
 const SEGMENTS = [
-  { key: 'support',   color: 'var(--color-green)' },
-  { key: 'neutral',   color: '#d1d0c8' },
-  { key: 'concerned', color: 'var(--color-amber)' },
-  { key: 'oppose',    color: 'var(--color-red)' },
+  { key: 'support',   color: '#16a34a' },
+  { key: 'neutral',   color: '#d4d2cb' },
+  { key: 'concerned', color: '#d97706' },
+  { key: 'oppose',    color: '#dc2626' },
 ]
 
 export default function StanceBar({ responses }) {
@@ -25,7 +25,7 @@ export default function StanceBar({ responses }) {
         {SEGMENTS.map(seg => {
           const count = counts[seg.key]
           const widthStr = total > 0
-            ? `max(4px, ${(count / total) * 100}%)`
+            ? `max(3px, ${(count / total) * 100}%)`
             : '25%'
           return (
             <div

@@ -5,36 +5,36 @@ const STANCES = [
     value: 'support',
     label: 'Support',
     selectedStyle: {
-      background: 'var(--color-green-light)',
-      color: 'var(--color-green)',
-      borderColor: 'var(--color-green)',
+      background: 'var(--green-bg)',
+      color: 'var(--green)',
+      borderColor: 'var(--green-border)',
     },
   },
   {
     value: 'neutral',
     label: 'Neutral',
     selectedStyle: {
-      background: 'var(--color-gray-light)',
-      color: 'var(--color-gray-neutral)',
-      borderColor: 'var(--color-gray-neutral)',
+      background: 'var(--gray-bg)',
+      color: 'var(--text-muted)',
+      borderColor: 'var(--gray-border)',
     },
   },
   {
     value: 'concerned',
     label: 'Concerned',
     selectedStyle: {
-      background: 'var(--color-amber-light)',
-      color: 'var(--color-amber)',
-      borderColor: 'var(--color-amber)',
+      background: 'var(--amber-bg)',
+      color: 'var(--amber)',
+      borderColor: 'var(--amber-border)',
     },
   },
   {
     value: 'oppose',
     label: 'Oppose',
     selectedStyle: {
-      background: 'var(--color-red-light)',
-      color: 'var(--color-red)',
-      borderColor: 'var(--color-red)',
+      background: 'var(--red-bg)',
+      color: 'var(--red)',
+      borderColor: 'var(--red-border)',
     },
   },
 ]

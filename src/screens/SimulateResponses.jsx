@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { getMeetingById, saveMeeting } from '../utils/localStorage'
 import DecisionCard from '../components/DecisionCard'
 import ProgressBar from '../components/ProgressBar'
+import TopBar from '../components/TopBar'
 import Button from '../components/Button'
 
 function buildResponseMap(meeting) {
@@ -109,10 +110,7 @@ export default function SimulateResponses({ navigate, activeMeetingId, activeTab
 
   return (
     <div className="screen">
-      <header className="topbar">
-        <span className="app-name">BoardAlign</span>
-        <span className="app-subtitle">Pre-Meeting Alignment Checker</span>
-      </header>
+      <TopBar />
       <main className="main-content" style={{ maxWidth: 800 }}>
         <button className="back-nav" onClick={() => navigate('define-decisions')}>
           ← Back
@@ -124,8 +122,10 @@ export default function SimulateResponses({ navigate, activeMeetingId, activeTab
         </p>
 
         <div className="callout-box">
-          "This simulates what your board members would say one-on-one — before the social dynamics of the room
-          change their stated positions. The gap between these private views and public votes is where groupthink lives."
+          "This simulates what your board members would say one-on-one — before the mechanisms described
+          in Chapter 13 of <em>Startup Boards</em> take hold: sequential speaking order, where whoever speaks
+          first anchors the group; groupthink, where independent judgment collapses into perceived consensus;
+          and social pressure between co-investors that converts private objections into public silence."
         </div>
 
         <ProgressBar completed={completedCount} total={total} />

@@ -102,7 +102,7 @@ function ReportCard({ decision, boardMembers, cardTourTarget, objectorsTourTarge
         <div className="key-objectors" data-tour={objectorsTourTarget}>
           <div className="key-objectors-label">Requires attention</div>
           {objectors.map((objector, idx) => (
-            <div key={idx} className="objector-row">
+            <div key={idx} className={`objector-row${objector.stance === 'oppose' ? ' objector-row--oppose' : ' objector-row--concerned'}`}>
               <div className="objector-name-line">
                 <span>{objector.member?.name || 'Unknown'}</span>
                 <RiskBadge flag={objector.stance === 'oppose' ? 'red' : 'yellow'} />
